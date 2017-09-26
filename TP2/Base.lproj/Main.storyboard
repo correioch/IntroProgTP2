@@ -532,6 +532,14 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="back_1" destination="JDL-U4-iOT" id="Kd4-0b-zar"/>
+                        <outlet property="back_2" destination="9Ch-AK-Ld1" id="Kd2-HM-fTQ"/>
+                        <outlet property="back_3" destination="dxD-rn-ELj" id="DNo-m5-Qbo"/>
+                        <outlet property="front_1" destination="cMB-0a-Zdq" id="VeE-qF-Lgf"/>
+                        <outlet property="front_2" destination="RW5-0R-9IY" id="jaI-ea-pBI"/>
+                        <outlet property="front_3" destination="B6Z-PQ-Fgb" id="0Qh-Rn-dPW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
