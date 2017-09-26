@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  TP2
+//  Intro_prog_TP2
 //
 //  Created by eleves on 2017-09-26.
 //  Copyright © 2017 eleves. All rights reserved.
@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        sleep(4)
         return true
     }
 
