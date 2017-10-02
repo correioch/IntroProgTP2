@@ -71,7 +71,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var Card_14: UIView!
     @IBOutlet weak var Card_15: UIView!
     @IBOutlet weak var Card_16: UIView!
+    @IBOutlet weak var Final: UIView!
     
+    @IBOutlet weak var imgFinal: UIImageView!
     
   
     
@@ -110,6 +112,16 @@ class ViewController: UIViewController {
     }
     //------------
     @IBAction func showCard(_ sender: UIButton) {
+        if arrayChosenCards.count == 2 {
+            
+             return
+           
+        }
+        print(arrayChosenCards)
+        
+        
+        sender.isEnabled = false
+        sender.adjustsImageWhenDisabled = false
         switch sender.tag {
         case 0:
             flipCard(from: front_1, to:back_1)
@@ -228,10 +240,12 @@ class ViewController: UIViewController {
             break
         }
         verification()
+        sender.isEnabled = true
         
     }
     //------------
     func flipCard(from: UIView, to:UIView) {
+     
         let transitionOptions: UIViewAnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews]
         
         UIView.transition( with: from, duration: 1.0, options: transitionOptions, animations: {
@@ -265,21 +279,30 @@ class ViewController: UIViewController {
     func verification(){
         if arrayChosenCards.count == 2 {
             if arrayChosenCards[0] == arrayChosenCards[1]{
-                Timer.scheduledTimer(timeInterval: 2,
+                arrayNumberOfAnimals.append(arrayChosenCards[0])
+                arrayNumberOfAnimals.append(arrayChosenCards[1])
+                Timer.scheduledTimer(timeInterval: 1,
                                      target: self,
                                      selector:(#selector(hideCards)),
                                      userInfo: nil,
                                      repeats: false)
-                arrayNumberOfAnimals.append(arrayChosenCards[0])
-                arrayNumberOfAnimals.append(arrayChosenCards[1])
+                
                 
             } else {
                 arrayChosenViews = []
             }
-            arrayChosenCards = []
+            Timer.scheduledTimer(timeInterval: 2,
+                                 target: self,
+                                 selector:(#selector(deleteChosenCards)),
+                                 userInfo: nil,
+                                 repeats: false)
         }
         resetCards()
         
+    }
+    //-----------
+    func deleteChosenCards() {
+        arrayChosenCards = []
     }
     //-----------
     func resetCards(){
@@ -298,21 +321,32 @@ class ViewController: UIViewController {
         }
         arrayOfShowInBacks = []
         arrayOfHidingFronts = []
+        
     }
     //-----------
     @objc func hideCards() {
         arrayChosenViews[0].isHidden = true
         arrayChosenViews[1].isHidden = true
         arrayChosenViews = []
-        if arrayChosenCards.count == 16 {
-            imgFinal.isHidden = false
+        if arrayNumberOfAnimals.count == 16 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8, execute: {
+                 self.imgFinal.isHidden = false
+                
+            })
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                self.Final.isHidden = false
+            })
+           
         }
         
         
     }
     //-----------
     @IBAction func reset(_ sender: UIButton) {
-        Card_1                                                                                                                                              .isHidden = false
+        
+        imgFinal.isHidden = true
+        Final.isHidden = true
+        Card_1                                                                                                                                             .isHidden = false
         Card_2.isHidden = false
         Card_3.isHidden = false
         Card_4.isHidden = false
